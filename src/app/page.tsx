@@ -1,5 +1,5 @@
 'use client';
-import { Physics } from '@react-three/cannon';
+import { Physics, RigidBody } from '@react-three/rapier';
 import { Sky, SoftShadows } from '@react-three/drei';
 import {
   Bloom,
@@ -8,7 +8,7 @@ import {
 } from '@react-three/postprocessing';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import Cube from './components/Cube';
+// import Cube from './components/Cube';
 import Ground from './components/Ground';
 import Player from './components/Player';
 
@@ -16,8 +16,9 @@ export default function Home() {
   return (
     <Canvas shadows>
       <SoftShadows />
-      <Sky distance={3000} turbidity={8} rayleigh={6} inclination={0.49} />
-      <ambientLight intensity={0.5} />
+      {/* <PointerLockControls /> */}
+      <Sky sunPosition={[200, 100, 100]} />
+      <ambientLight intensity={1.5} />
       <directionalLight
         castShadow
         position={[10, 10, 10]}
@@ -28,12 +29,14 @@ export default function Home() {
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
       />
-      <Physics>
+      <Physics gravity={[0, -20, 0]}>
         <Ground />
-        <Cube position={[-2, 1, -6]} />
-        <Cube position={[0, 1, -5]} />
-        <Cube position={[2, 1, -6]} />
         <Player />
+        <RigidBody>
+          <mesh position={[0, 3, -5]}>
+            <boxGeometry />
+          </mesh>
+        </RigidBody>
       </Physics>
       <EffectComposer>
         <DepthOfField
