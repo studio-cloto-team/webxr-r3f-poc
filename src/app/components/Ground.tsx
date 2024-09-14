@@ -3,7 +3,7 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier';
 function Ground() {
   return (
     <RigidBody type="fixed" colliders={false}>
-        <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
+        <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2} receiveShadow>
             <planeGeometry args={[500, 500]} />
             <meshStandardMaterial color="gray" />
         </mesh>
