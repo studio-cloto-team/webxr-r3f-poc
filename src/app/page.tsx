@@ -13,6 +13,8 @@ import Ground from './components/Ground';
 import Player from './components/Player';
 import { Cubes } from './components/Cube';
 
+const shadowOffset = 50;
+
 export default function Home() {
   return (
     <Canvas shadows camera={{fov: 45, position: [0, 2, 5]}}>
@@ -22,8 +24,13 @@ export default function Home() {
       <ambientLight intensity={1.5} />
       <directionalLight
         castShadow
-        intensity={.8}
-        position={[50, 50, 0]} />
+        intensity={1.5}
+        shadow-mapSize={4096}
+        shadow-camera-top={shadowOffset}
+        shadow-camera-bottom={-shadowOffset}
+        shadow-camera-left={shadowOffset}
+        shadow-camera-right={-shadowOffset}
+        position={[100, 100, 100]} />
       <Physics gravity={[0, -20, 0]}>
         <Ground />
         <Player />
