@@ -8,13 +8,16 @@ bun dev
 →[https://localhost:3000](https://localhost:3000)で起動
 
 ## 使った技術
-### [React Three Fiber (r3f)](https://r3f.docs.pmnd.rs/getting-started/introduction)
+### [React Three Fiber (r3f)](https://r3f.docs.pmnd.rs/getting-started/examples)
 Three.jsのReactラッパー。
 基本何でもできる。
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/1476c77f-402e-40b0-939f-89febdd491b4">
+
 
 ### [React Three Drei](https://drei.docs.pmnd.rs/getting-started/introduction)
-fiberの拡張。
-fiberだけでは表現できないことを表現できるようになる
+fiberを抽象化して使いやすくしてくれる。
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/864c08a2-4f3b-4b73-a099-fe948e1f6d6e">
+
 
 ### [React Three Rapier](https://pmndrs.github.io/react-three-rapier/)
 物理演算をしてくれるパッケージ。
@@ -22,6 +25,8 @@ Rustで書かれているので、旧世代のCannonよりも高速。
 ```tsx
 <RigidBody>でMeshやGLBファイルを囲むだけで物理演算対象になる（衝突判定など）</RigidBody>
 ```
+<img width="700" alt="image" src="https://github.com/user-attachments/assets/1bb664c9-3ede-4cfe-ac60-d3acc9a4061f">
+
 
 ### [Bun](https://bun.sh/)
 爆速ビルドができるようになる。
@@ -30,6 +35,8 @@ Rustで書かれているので、旧世代のCannonよりも高速。
 ```sh
 brew install oven-sh/bun/bun #bunのインストール
 ```
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/8ab005f9-dd82-475a-ae6e-6796dbd6ecac">
+
 
 ### [Biome](https://biomejs.dev/)
 爆速Lint&Format。
@@ -41,3 +48,5 @@ brew install biome
 curl -L https://github.com/biomejs/biome/releases/download/cli%2Fv1.9.1/biome-darwin-arm64 -o biome
 chmod +x biome
 ```
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/3d753791-ef35-40c3-ae6f-c338b9e8d5d7">
+
