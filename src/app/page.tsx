@@ -8,7 +8,6 @@ import {
 } from '@react-three/postprocessing';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import './App.css';
 import Cube from './components/Cube';
 import Ground from './components/Ground';
 import Player from './components/Player';

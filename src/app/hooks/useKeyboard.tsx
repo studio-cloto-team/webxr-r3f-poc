@@ -28,7 +28,6 @@ export default function useKeyboard() {
     const onKeyUp = (event: KeyboardEvent) => {
       const action = (KeyBindings as KeyBindingsType)[event.code];
       if (action)
-        console.log("button is pressed");
         setMovement((state) => ({
           ...state,
           [action]: false,
