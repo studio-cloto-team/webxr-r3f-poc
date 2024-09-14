@@ -1,12 +1,25 @@
-import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import {Gltf} from '@react-three/drei';
+import * as THREE from "three";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
+import { useTexture } from "@react-three/drei";
+import floorTexture from "@/app/assets/glassland.jpg";
 
 function Ground() {
-  return (
-    <RigidBody type="fixed" colliders="trimesh">
-      <Gltf castShadow receiveShadow position={[0, -4, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0.1} src="/territory.glb"/>
-    </RigidBody>
-  );
+	const texture = useTexture(floorTexture.src);
+	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+
+	return (
+		<RigidBody type="fixed">
+			<mesh position={[0, -3, 0]} rotation-x={-Math.PI / 2}>
+				<planeGeometry args={[200, 200]} />
+				<meshStandardMaterial
+					color="gray"
+					map={texture}
+					map-repeat={[100, 100]}
+				/>
+			</mesh>
+			<CuboidCollider args={[200, -2, 200]} position={[0, -2, 0]} />
+		</RigidBody>
+	);
 }
 
 export default Ground;
