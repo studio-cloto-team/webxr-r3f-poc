@@ -1,6 +1,7 @@
 import * as THREE from "three";
+import * as RAPIER from "@dimforge/rapier3d-compat"
 import * as TWEEN from "@tweenjs/tween.js";
-import { RapierRigidBody, RigidBody } from '@react-three/rapier';
+import { CapsuleCollider, RapierRigidBody, RigidBody, useRapier } from '@react-three/rapier';
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { usePersonControls } from "@/app/hooks/usePersonControls"
@@ -16,10 +17,12 @@ const easing = TWEEN.Easing.Quadratic.Out;
 function Player() {
   const playerRef = useRef<RapierRigidBody>(null);
   const { forward, backward, left, right, jump } = usePersonControls();
+  const rapier = useRapier();
 
   useFrame((state) => {
     if(!playerRef.current) return;
 
+    // 水平移動
     const velocity = playerRef.current.linvel();
 
     frontVector.set(0, 0, Number(backward) - Number(forward));
@@ -28,12 +31,24 @@ function Player() {
 
     playerRef.current.wakeUp();
     playerRef.current.setLinvel({x: direction.x, y: velocity.y, z: direction.z}, true);
+
+    // ジャンプ
+    const world = rapier.world;
+    const ray = new RAPIER.Ray(playerRef.current.translation(), { x: 0, y: -1, z: 0 });
+    const hit = world.castRay(ray, 1.0, true);
+    const grounded = hit && hit.collider && Math.abs(hit.timeOfImpact) <= 1;
+
+    if(jump && grounded) doJump();
   });
+  function doJump(){
+    playerRef.current?.setLinvel({ x: 0, y: 8, z: 0}, true);
+  }
   return (
     <>
-      <RigidBody position={[0, 1, -2]} ref={playerRef}>
+      <RigidBody colliders={false} mass={1} ref={playerRef} lockRotations>
         <mesh>
           <capsuleGeometry args={[0.5, 0.5]}/>
+          <CapsuleCollider args={[0.5, 0.5]} />
         </mesh>
       </RigidBody>
     </>

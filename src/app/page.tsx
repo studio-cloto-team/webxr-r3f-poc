@@ -1,6 +1,6 @@
 'use client';
 import { Physics, RigidBody } from '@react-three/rapier';
-import { Sky, SoftShadows } from '@react-three/drei';
+import { PointerLockControls, Sky, SoftShadows } from '@react-three/drei';
 import {
   Bloom,
   DepthOfField,
@@ -14,9 +14,9 @@ import Player from './components/Player';
 
 export default function Home() {
   return (
-    <Canvas shadows>
+    <Canvas shadows camera={{fov: 45, position: [0, 2, 5]}}>
       <SoftShadows />
-      {/* <PointerLockControls /> */}
+      <PointerLockControls />
       <Sky sunPosition={[200, 100, 100]} />
       <ambientLight intensity={1.5} />
       <directionalLight
