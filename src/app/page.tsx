@@ -11,6 +11,7 @@ import { Canvas } from '@react-three/fiber';
 // import Cube from './components/Cube';
 import Ground from './components/Ground';
 import Player from './components/Player';
+import { Cubes } from './components/Cube';
 
 export default function Home() {
   return (
@@ -21,22 +22,12 @@ export default function Home() {
       <ambientLight intensity={1.5} />
       <directionalLight
         castShadow
-        position={[10, 10, 10]}
-        intensity={1}
-        shadow-camera-far={50}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
-      />
+        intensity={.8}
+        position={[50, 50, 0]} />
       <Physics gravity={[0, -20, 0]}>
         <Ground />
         <Player />
-        <RigidBody>
-          <mesh position={[0, 3, -5]}>
-            <boxGeometry />
-          </mesh>
-        </RigidBody>
+        <Cubes />
       </Physics>
       <EffectComposer>
         <DepthOfField
