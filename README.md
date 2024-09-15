@@ -1,11 +1,24 @@
 ## 何の検証？
 最も楽かつ柔軟にWebXRを実装できる技術スタックを固めるための検証
 
-## 実行方法
-```bash
+
+## 環境構築&実行方法
+```zsh
+#bunのインストール
+brew install oven-sh/bun/bun
+
+# Biomeのインストール
+brew install biome
+# v1.9.1のところは最新のバージョンを確認すること
+# →https://github.com/biomejs/biome/releases
+curl -L https://github.com/biomejs/biome/releases/download/cli%2Fv1.9.1/biome-darwin-arm64 -o biome
+chmod +x biome
+
+# 開発環境で実行
 bun dev
 ```
 →[https://localhost:3000](https://localhost:3000)で起動
+※BiomeのLinterをファイル保存時に適用するには、[BiomeのVSCode拡張](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)を入れる必要がある
 
 ## 使った技術
 ### [React Three Fiber (r3f)](https://r3f.docs.pmnd.rs/getting-started/examples)
